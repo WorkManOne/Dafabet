@@ -52,7 +52,7 @@ struct CustomHeader: View {
             .padding(.top, 70)
             .padding(.bottom, 20)
             .background(
-                Color(.yellowMain.opacity(0.2))
+                Color.yellowMain.opacity(0.2)
                     .clipShape(RoundedCorners(radius: 30, corners: [.bottomLeft, .bottomRight]))
                     .overlay {
                         Color(.darkFrame)

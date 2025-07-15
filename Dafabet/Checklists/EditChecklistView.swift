@@ -39,7 +39,7 @@ struct EditChecklistView: View {
                             .darkFramed()
                             .padding(.bottom, 20)
                     } else {
-                        TextField("", text: $checklist.name, prompt: Text("Pre-Match Preparation").foregroundStyle(.lightGray))
+                        TextField("", text: $checklist.name, prompt: Text("Pre-Match Preparation").foregroundColor(.lightGray))
                             .foregroundStyle(.white)
                             .font(.system(size: 16, weight: .regular))
                             .frame(maxWidth: .infinity)
