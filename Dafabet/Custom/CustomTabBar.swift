@@ -22,14 +22,25 @@ struct CustomTabBar: View {
             TabBarButton(icon: Image("profile"), title: "Profile", index: 3, selectedTab: $selectedTab)
             Spacer()
         }
-        .padding(.vertical, 20)
-        .padding(.bottom)
+        .padding(.top, 20)
+        .padding(.bottom, getSafeAreaTop()+8)
         .background(
             Color(.darkFrame)
                 .clipShape(RoundedCorners(radius: 30, corners: [.topLeft, .topRight]))
         )
+        .ignoresSafeArea(edges: .bottom)
+    }
+
+    private func getSafeAreaTop() -> CGFloat {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return 44
+        }
+        return window.safeAreaInsets.bottom
     }
 }
+
+
 
 struct TabBarButton: View {
     let icon: Image
