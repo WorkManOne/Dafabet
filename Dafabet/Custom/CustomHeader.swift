@@ -23,9 +23,9 @@ struct CustomHeader: View {
     @Environment(\.dismiss) var dismiss
 
     var body: some View {
-        VStack {
+        VStack(spacing: 0) {
             ZStack {
-                VStack {
+                VStack(spacing: 4) {
                     Text(title)
                         .font(.system(size: 20, weight: .semibold))
                         .foregroundColor(.white)
@@ -49,8 +49,9 @@ struct CustomHeader: View {
                     Spacer()
                 }
             }
-            .padding(.top, 70)
-            .padding(.bottom, 20)
+            .padding(.top, 8)
+            .padding(.bottom, 16)
+            .padding(.top, getSafeAreaTop())
             .background(
                 Color.yellowMain.opacity(0.2)
                     .clipShape(RoundedCorners(radius: 30, corners: [.bottomLeft, .bottomRight]))
@@ -63,11 +64,18 @@ struct CustomHeader: View {
 
             Spacer()
         }
-        .ignoresSafeArea()
+        .ignoresSafeArea(edges: .top)
+    }
 
-
+    private func getSafeAreaTop() -> CGFloat {
+        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+              let window = windowScene.windows.first else {
+            return 44
+        }
+        return window.safeAreaInsets.top
     }
 }
+
 
 #Preview {
     CustomHeader(title: "Home", isDismiss: true)
