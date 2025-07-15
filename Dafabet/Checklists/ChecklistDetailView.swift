@@ -95,10 +95,14 @@ struct ChecklistDetailView: View {
                     .clipShape(RoundedRectangle(cornerRadius: 10))
                 }
                 .padding(.horizontal, 5)
-                .padding(.bottom, 20)
-                .darkFramed()
+                .padding(.top)
+                .padding(.bottom, getSafeAreaBottom()+8)
+                .background(
+                    Color(.darkFrame)
+                        .clipShape(RoundedCorners(radius: 30, corners: [.topLeft, .topRight]))
+                )
             }
-            .ignoresSafeArea()
+            .ignoresSafeArea(edges: .bottom)
         }
         .customHeader(title: checklist.name, description: "\(checklist.items.count) items • \(checklist.items.count(where: {$0.isCompleted} )) completed", isDismiss: true)
         .navigationBarBackButtonHidden(true)

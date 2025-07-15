@@ -301,11 +301,15 @@ struct EditEquipmentView: View {
                             .clipShape(RoundedRectangle(cornerRadius: 10))
                     }
                 }
-                .padding(.horizontal, 5)
-                .padding(.bottom, 20)
-                .darkFramed()
+                .padding(.horizontal, 20)
+                .padding(.top)
+                .padding(.bottom, getSafeAreaBottom()+8)
+                .background(
+                    Color(.darkFrame)
+                        .clipShape(RoundedCorners(radius: 30, corners: [.topLeft, .topRight]))
+                )
             }
-            .ignoresSafeArea()
+            .ignoresSafeArea(edges: .bottom)
         }
         .customHeader(title: isEditing ? "Edit Equipment" : "Add Equipment", isDismiss: true)
         .navigationBarBackButtonHidden(true)

@@ -7,6 +7,14 @@
 
 import SwiftUI
 
+func getSafeAreaBottom() -> CGFloat {
+    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+          let window = windowScene.windows.first else {
+        return 44
+    }
+    return window.safeAreaInsets.bottom
+}
+
 struct CustomTabBar: View {
     @Binding var selectedTab: Int
 
@@ -23,24 +31,14 @@ struct CustomTabBar: View {
             Spacer()
         }
         .padding(.top, 20)
-        .padding(.bottom, getSafeAreaTop()+8)
+        .padding(.bottom, getSafeAreaBottom()+8)
         .background(
             Color(.darkFrame)
                 .clipShape(RoundedCorners(radius: 30, corners: [.topLeft, .topRight]))
         )
         .ignoresSafeArea(edges: .bottom)
     }
-
-    private func getSafeAreaTop() -> CGFloat {
-        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-              let window = windowScene.windows.first else {
-            return 44
-        }
-        return window.safeAreaInsets.bottom
-    }
 }
-
-
 
 struct TabBarButton: View {
     let icon: Image

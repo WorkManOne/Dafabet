@@ -198,10 +198,14 @@ struct EditChecklistView: View {
                     }
                 }
                 .padding(.horizontal, 5)
-                .padding(.bottom, 20)
-                .darkFramed()
+                .padding(.top)
+                .padding(.bottom, getSafeAreaBottom()+8)
+                .background(
+                    Color(.darkFrame)
+                        .clipShape(RoundedCorners(radius: 30, corners: [.topLeft, .topRight]))
+                )
             }
-            .ignoresSafeArea()
+            .ignoresSafeArea(edges: .bottom)
         }
         .customHeader(title: isEditing ? "Edit Checklist" : "Create New Checklist", isDismiss: true)
         .navigationBarBackButtonHidden(true)
